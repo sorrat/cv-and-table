@@ -1,4 +1,5 @@
 const webpack = require("webpack");
+const merge = require('webpack-merge');
 const path = require("path");
 
 const PATHS = {
@@ -6,7 +7,7 @@ const PATHS = {
   build: path.join(__dirname, "build")
 };
 
-let config = {
+const common = {
   entry: ["babel-regenerator-runtime", `${PATHS.app}/index.jsx`],
   output: {
     path: PATHS.build,
@@ -24,7 +25,7 @@ let config = {
   },
 };
 
-const production = {
+const production = merge(common, {
   devtool: "#source-map",
   plugins: [
     new webpack.DefinePlugin({
@@ -38,10 +39,11 @@ const production = {
       }
     })
   ]
-}
+});
 
 if (process.env.NODE_ENV == "production") {
-  Object.assign(config, production);
+  module.exports = production;
+} else {
+  module.exports = common;
 }
 
-module.exports = config;
