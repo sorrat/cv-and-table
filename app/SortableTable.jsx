@@ -5,21 +5,25 @@ import {Table} from './Table.jsx'
 import {highlight} from './utils'
 
 
-const SortInput = (props) => (
-  <div>
-    <input
-      type="text"
-      placeholder="Sort by"
-      className="sort-input"
-      onChange={event => props.onChange(event.target.value)}
-    />
-  </div>
-)
+function SortInput(props) {
+  return (
+    <div>
+      <input
+        type="text"
+        placeholder="Sort by"
+        className="sort-input"
+        onChange={event => props.onChange(event.target.value)}
+      />
+    </div>
+  )
+}
 
-export class SortableTable extends React.Component {
+
+class SortableTable extends React.Component {
   constructor(props) {
     super(props);
     this.state = {rows: props.rows};
+    this.sortRows = this.sortRows.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -30,7 +34,7 @@ export class SortableTable extends React.Component {
     return (
       <div className="content">
         <SortInput
-          onChange={this.sortRows.bind(this)}
+          onChange={this.sortRows}
         />
         <Table
           headers={this.props.headers}
@@ -67,3 +71,5 @@ export class SortableTable extends React.Component {
     return {row: highlightedRow, count: totalCount};
   }
 }
+
+export {SortableTable};

@@ -2,13 +2,15 @@ import React from 'react';
 import {Link} from 'react-router'
 
 
-const PageLink = (props) => (
-  <li>
-    <Link to={props.to} activeClassName="active">
-      {props.text}
-    </Link>
-  </li>
-);
+function PageLink(props) {
+  return (
+    <li>
+      <Link to={props.to} activeClassName="active">
+        {props.text}
+      </Link>
+    </li>
+  );
+}
 
 class NavigationBar extends React.Component {
 
