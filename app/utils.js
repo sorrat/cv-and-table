@@ -1,3 +1,6 @@
+import {trim, orderBy} from 'lodash'
+
+
 export function randomDate() {
   const start = new Date(2012, 0, 1).getTime();
   const end = new Date().getTime();
@@ -28,8 +31,9 @@ export function highlight(string, subString) {
 }
 */
 
-export function highlight(string, subString) {
-  if (subString === "") return [string, 0];
+export function highlightString(string, subString) {
+  if (subString === "")
+    return {result: string, count: 0};
 
   let n = 0;
   let newOccurence = 0;
@@ -51,7 +55,29 @@ export function highlight(string, subString) {
       pos = newOccurence + step;
     }
   }
-  return {text: highlightedString, count: n};
+  return {result: highlightedString, count: n};
+}
+
+export function highlightRow(object, subString) {
+  let totalCount = 0;
+  let result = {};
+
+  for (let key in object) {
+    let highlighted = highlightString(object[key], subString);
+    result[key] = highlighted['result'];
+    totalCount += highlighted['count'];
+  }
+  return {result: result, count: totalCount};
+}
+
+export function sortRows(rows, sortKey) {
+  sortKey = trim(sortKey);
+
+  if (sortKey) {
+    rows = rows.map(row => highlightRow(row, sortKey));
+    rows = orderBy(rows, 'count', 'desc').map(row => row['result']);
+  }
+  return rows;
 }
 
 export function loadJSON(filepath, callback) {

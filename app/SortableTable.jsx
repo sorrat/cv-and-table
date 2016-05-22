@@ -1,8 +1,7 @@
 import React from 'react';
-import {trim, orderBy} from 'lodash'
 
 import {Table} from './Table.jsx'
-import {highlight} from './utils'
+import {sortRows} from './utils'
 
 
 function SortInput(props) {
@@ -23,7 +22,7 @@ class SortableTable extends React.Component {
   constructor(props) {
     super(props);
     this.state = {rows: props.rows};
-    this.sortRows = this.sortRows.bind(this);
+    this.reorderRows = this.reorderRows.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -34,7 +33,7 @@ class SortableTable extends React.Component {
     return (
       <div className="content">
         <SortInput
-          onChange={this.sortRows}
+          onChange={this.reorderRows}
         />
         <Table
           headers={this.props.headers}
@@ -44,31 +43,8 @@ class SortableTable extends React.Component {
     );
   }
 
-  sortRows(key) {
-    let rows;
-    key = trim(key);
-
-    if (key == "") {
-      rows = this.props.rows;
-    }
-    else {
-      rows = this.props.rows.map(row => this.highlightRow(row, key));
-      rows = orderBy(rows, 'count', 'desc').map(row => row['row']);
-    }
-    this.setState({rows: rows});
-  }
-
-  highlightRow(row, key) {
-    let highlighted;
-    let totalCount = 0;
-    let highlightedRow = [];
-
-    for (let column in row) {
-      highlighted = highlight(row[column], key);
-      highlightedRow[column] = highlighted['text'];
-      totalCount += highlighted['count'];
-    }
-    return {row: highlightedRow, count: totalCount};
+  reorderRows(sortKey) {
+    this.setState({rows: sortRows(this.props.rows, sortKey)});
   }
 }
 
