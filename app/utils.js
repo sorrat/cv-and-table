@@ -1,36 +1,6 @@
 import {trim, orderBy} from 'lodash'
 
 
-export function randomDate() {
-  const start = new Date(2012, 0, 1).getTime();
-  const end = new Date().getTime();
-  const randomTimestamp = start + Math.random() * (end - start);
-  return new Date(randomTimestamp).toISOString().slice(0, 19);
-}
-
-export function randomInt(start=100, end=10000) {
-  return Math.floor(Math.random() * (end - start)) + start;
-}
-
-export function randomStatus() {
-  const statuses = [
-    'open',
-    'in progress',
-    'resolved',
-  ];
-  return statuses[randomInt(0, statuses.length)];
-}
-
-/*
-export function highlight(string, subString) {
-  let replacement = `<span class="highlight">${subString}</span>`;
-  let pattern = new RegExp(subString, 'g');
-  let count = (string.match(pattern) || []).length;
-  let highlightedString = string.replace(pattern, replacement);
-  return [highlightedString, count];
-}
-*/
-
 export function highlightString(string, subString) {
   if (subString === "")
     return {result: string, count: 0};
