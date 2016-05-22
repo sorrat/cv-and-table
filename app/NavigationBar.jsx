@@ -25,7 +25,7 @@ class NavigationBar extends React.Component {
     let links = this.props.links.map(
       link => <PageLink {...link} key={link.to}/>
     );
-    return <ul className="nav">{links}</ul>;
+    return <nav><ul>{links}</ul></nav>;
   }
 }
 

@@ -3,28 +3,27 @@ import React from 'react';
 
 export function CurriculumVitae(props) {
   return (
-    <div className="content">
-      <div className="section group">
+    <article className="content">
 
-        <div className="col span_1_of_4">
-          <img src={props.photo}/>
+      <div className="horizontal-section">
+        <div className="CurriculumVitae--photo">
+          <img src={props.photo} />
         </div>
 
-        <div className="col span_2_of_4">
+        <div>
           <h2>
             {props.fullname}
           </h2>
-          <article>
+          <div>
             {props.biography}
-          </article>
+          </div>
         </div>
-
       </div>
 
       <div>
         <a href={"mailto:" + props.email} className="email">E-mail me</a>
       </div>
 
-    </div>
+    </article>
   );
 }

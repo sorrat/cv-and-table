@@ -39,7 +39,7 @@ export function highlightString(string, subString) {
   let newOccurence = 0;
   let pos = 0;
   let step = subString.length;
-  let replacement = `<span class="highlight">${subString}</span>`;
+  let replacement = `<mark>${subString}</mark>`;
   let highlightedString = "";
 
   while (true) {
