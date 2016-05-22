@@ -25,13 +25,13 @@ function Table(props) {
       <thead>
         <tr>
           {props.headers.map(
-            (header, i) => <Header text={upperFirst(header)} key={i} />
+            (header) => <Header text={upperFirst(header)} key={header} />
           )}
         </tr>
       </thead>
       <tbody>
         {props.rows.map(
-          (row, i) => <Row row={row} headers={props.headers} key={i} />
+          (row) => <Row row={row} headers={props.headers} key={row.id} />
         )}
       </tbody>
     </table>

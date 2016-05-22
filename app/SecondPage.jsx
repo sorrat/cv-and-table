@@ -16,6 +16,9 @@ class SecondPage extends React.Component {
 
     loadJSON('data/table.json', data => {
       let {headers, rows} = JSON.parse(data);
+      for (let row of rows) {
+        row.id = row.number;
+      }
       this.setState({headers: headers, rows: rows});
     });
   }
