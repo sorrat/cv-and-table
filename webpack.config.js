@@ -8,7 +8,10 @@ const PATHS = {
 };
 
 const common = {
-  entry: ["babel-regenerator-runtime", `${PATHS.app}/index.jsx`],
+  entry: [
+    "babel-regenerator-runtime",
+    `${PATHS.app}/index.jsx`,
+  ],
   output: {
     path: PATHS.build,
     filename: "bundle.js"
