@@ -1,0 +1,17 @@
+.horizontal-section {
+  display: flex;
+  align-items: flex-start;
+}
+
+.CurriculumVitae--photo {
+  margin: 0 20px 20px 0;
+}
+
+.CurriculumVitae--biography {
+  max-width: 66%;
+}
+
+.email {
+  background: url('/email.png') no-repeat left center;
+  padding: 0 20px;  /* 20px = image width */
+}

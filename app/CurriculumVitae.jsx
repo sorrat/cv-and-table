@@ -10,7 +10,7 @@ export function CurriculumVitae(props) {
           <img src={props.photo} />
         </div>
 
-        <div>
+        <div className="CurriculumVitae--biography">
           <h2>
             {props.fullname}
           </h2>
