@@ -2,7 +2,7 @@ import React from 'react';
 
 import {NavigationBar} from './NavigationBar.jsx'
 import {SortableTable} from './SortableTable.jsx'
-import {loadJSON} from './utils'
+import {loadJSON} from '../utils'
 
 
 class SecondPage extends React.Component {

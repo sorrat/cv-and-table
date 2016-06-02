@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {Table} from './Table.jsx'
-import {sortRows} from './utils'
+import {sortRows} from '../utils'
 
 
 function SortInput(props) {
